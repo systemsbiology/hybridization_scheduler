@@ -1,0 +1,14 @@
+/* arrow_left.png and arrow_right.png icons are courtesy of gentleface 
+ * Free Wireframe Toolbar Icons (http://gentleface.com/free_icon_set.html)
+ * and are licensed under the Creative Commons 
+ * Attribution-NonCommercial-NoDerivs 3.0 Unported license*/
+.arrow_left {
+  background: static_url('images/arrow_left.png') no-repeat;
+  width: 16px;
+  height: 16px;
+}
+.arrow_right {
+  background: static_url('images/arrow_right.png') no-repeat;
+  width: 16px;
+  height: 16px;
+}

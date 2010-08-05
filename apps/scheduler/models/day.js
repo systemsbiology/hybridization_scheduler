@@ -15,7 +15,7 @@ Scheduler.Day = SC.Object.extend(
 /** @scope Scheduler.Day.prototype */ {
 
   formattedDate: function() {
-  	return this.get('date').toFormattedString("%m/%d/%Y");
+  	return this.get('date').toFormattedString("%a %m/%d");
   }.property('date').cacheable(),
 
 }) ;

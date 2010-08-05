@@ -11,10 +11,37 @@ Scheduler.mainPage = SC.Page.design({
   // Add childViews to this pane for views to display immediately on page 
   // load.
   mainPane: SC.MainPane.design({
-    childViews: 'leftButton calendar rightButton'.w(),
+    childViews: 'toolbar calendar'.w(),
     
-	leftButton: SC.ButtonView.design({
-	  	
+	toolbar: SC.ToolbarView.design({
+	  layout: { width: 802, height: 40, centerX: 0, centerY: -270 },
+	  
+	  childViews: 'leftButton appTitle rightButton'.w(),
+
+      leftButton: SC.ButtonView.design({
+	    layout: { left: 10, centerY: 0, width: 44, height: 24 },
+	    titleMinWidth: 36,
+	    icon: 'arrow_left',
+		
+		target: 'Scheduler.daysController',
+		action: 'backward'	
+	  }),	
+	  
+	  appTitle: SC.LabelView.design({
+	  	layout: { width: 300, height: 24, centerX: 0, centerY: 0 },
+		controlSize: SC.LARGE_CONTROL_SIZE,
+		textAlign: SC.ALIGN_CENTER,
+	  	value: 'Scheduler'
+	  }),
+	  
+	  rightButton: SC.ButtonView.design({
+	    layout: { right: 10, centerY: 0, width: 44, height: 24 },
+	    titleMinWidth: 36,
+	    icon: 'arrow_right',
+		
+		target: 'Scheduler.daysController',
+		action: 'forward'	
+	  }),	
 	}),
 	
 	calendar: SC.GridView.design(SC.Border, {
