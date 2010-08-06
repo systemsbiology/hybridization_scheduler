@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @resource_state.name %>
+</p>
+
+<p>
+  <b>Sample limit:</b>
+  <%= @resource_state.sample_limit %>
+</p>
+
+<p>
+  <b>Chip limit:</b>
+  <%= @resource_state.chip_limit %>
+</p>
+
+
+<%= link_to 'Edit', edit_resource_state_path(@resource_state) %> |
+<%= link_to 'Back', resource_states_path %>

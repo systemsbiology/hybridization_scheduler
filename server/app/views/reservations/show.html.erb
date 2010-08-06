@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Date:</b>
+  <%= @reservation.date %>
+</p>
+
+<p>
+  <b>User login:</b>
+  <%= @reservation.user_login %>
+</p>
+
+<p>
+  <b>Sample type:</b>
+  <%= @reservation.sample_type_id %>
+</p>
+
+<p>
+  <b>Sample number:</b>
+  <%= @reservation.sample_number %>
+</p>
+
+<p>
+  <b>Chip number:</b>
+  <%= @reservation.chip_number %>
+</p>
+
+
+<%= link_to 'Edit', edit_reservation_path(@reservation) %> |
+<%= link_to 'Back', reservations_path %>

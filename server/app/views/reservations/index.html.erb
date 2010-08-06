@@ -1,0 +1,31 @@
+<h1>Listing reservations</h1>
+
+<table>
+  <tr>
+    <th>Date</th>
+    <th>User login</th>
+    <th>Sample type</th>
+    <th>Sample number</th>
+    <th>Chip number</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @reservations.each do |reservation| %>
+  <tr>
+    <td><%= reservation.date %></td>
+    <td><%= reservation.user_login %></td>
+    <td><%= reservation.sample_type_id %></td>
+    <td><%= reservation.sample_number %></td>
+    <td><%= reservation.chip_number %></td>
+    <td><%= link_to 'Show', reservation %></td>
+    <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
+    <td><%= link_to 'Destroy', reservation, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Reservation', new_reservation_path %>

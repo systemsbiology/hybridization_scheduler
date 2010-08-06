@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Sample type:</b>
+  <%= @requirement.sample_type_id %>
+</p>
+
+<p>
+  <b>Resource state:</b>
+  <%= @requirement.resource_state_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_requirement_path(@requirement) %> |
+<%= link_to 'Back', requirements_path %>

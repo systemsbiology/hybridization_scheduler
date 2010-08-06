@@ -1,0 +1,7 @@
+<%= semantic_form_for(@requirement) do |f| %>
+  <% f.inputs do %>
+    <%= f.input :sample_type %>
+    <%= f.input :resource_state, :label_method => :resource_and_state_name %>
+  <% end %>
+  <%= f.buttons %>
+<% end %>

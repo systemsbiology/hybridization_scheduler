@@ -1,0 +1,29 @@
+<h1>Listing resource_states</h1>
+
+<table>
+  <tr>
+    <th>Resource</th>
+    <th>Name</th>
+    <th>Sample limit</th>
+    <th>Chip limit</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @resource_states.each do |resource_state| %>
+  <tr>
+    <td><%= resource_state.resource.name %></td>
+    <td><%= resource_state.name %></td>
+    <td><%= resource_state.sample_limit %></td>
+    <td><%= resource_state.chip_limit %></td>
+    <td><%= link_to 'Show', resource_state %></td>
+    <td><%= link_to 'Edit', edit_resource_state_path(resource_state) %></td>
+    <td><%= link_to 'Destroy', resource_state, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Resource state', new_resource_state_path %>
