@@ -12,3 +12,16 @@
   width: 16px;
   height: 16px;
 }
+
+.day-view {
+  height: 100%;
+}
+
+.day-view .date {
+  position: relative;
+  top: 4px;
+  width: 140px;
+  margin-left: -70px;
+  left: 50%;
+  text-align: center;
+}

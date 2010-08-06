@@ -14,7 +14,7 @@ Scheduler.mainPage = SC.Page.design({
     childViews: 'toolbar calendar'.w(),
     
 	toolbar: SC.ToolbarView.design({
-	  layout: { width: 802, height: 40, centerX: 0, centerY: -270 },
+	  layout: { width: 802, height: 40, centerX: 0, centerY: -250 },
 	  
 	  childViews: 'leftButton appTitle rightButton'.w(),
 
@@ -28,10 +28,10 @@ Scheduler.mainPage = SC.Page.design({
 	  }),	
 	  
 	  appTitle: SC.LabelView.design({
-	  	layout: { width: 300, height: 24, centerX: 0, centerY: 0 },
+	  	layout: { width: 400, height: 24, centerX: 0, centerY: 0 },
 		controlSize: SC.LARGE_CONTROL_SIZE,
 		textAlign: SC.ALIGN_CENTER,
-	  	value: 'Scheduler'
+	  	value: 'Hybridization Scheduler'
 	  }),
 	  
 	  rightButton: SC.ButtonView.design({
@@ -45,7 +45,7 @@ Scheduler.mainPage = SC.Page.design({
 	}),
 	
 	calendar: SC.GridView.design(SC.Border, {
-	  layout: { width: 802, height: 502, centerX: 0, centerY: 0 },
+	  layout: { width: 802, height: 502, centerX: 0, centerY: 20 },
 	  
 	  columnWidth: 200,
 	  rowHeight: 250,
