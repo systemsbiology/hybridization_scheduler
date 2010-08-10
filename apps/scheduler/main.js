@@ -21,9 +21,11 @@ Scheduler.main = function main() {
 
   // Step 2. Set the content property on your primary controller.
   // This will make your app come alive!
-
-  // TODO: Set the content property on your primary controller
-  // ex: Scheduler.contactsController.set('content',Scheduler.contacts);
+  Scheduler.store.find(Scheduler.SAMPLE_TYPES_QUERY);
+  Scheduler.store.find(Scheduler.REQUIREMENTS_QUERY);
+  Scheduler.store.find(Scheduler.RESERVATIONS_QUERY);
+  Scheduler.store.find(Scheduler.RESOURCES_QUERY);
+  Scheduler.store.find(Scheduler.RESOURCE_STATES_QUERY);
 
 } ;
 

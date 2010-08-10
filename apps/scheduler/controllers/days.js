@@ -47,5 +47,5 @@ Scheduler.daysController = SC.ArrayController.create(
   backward: function() {
   	var baseDate = this.get('baseDate');
 	this.set('baseDate', baseDate.advance({day:-7}));
-  }
+  },
 }) ;
