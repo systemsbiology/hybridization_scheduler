@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20100806203734) do
   end
 
   create_table "reservations", :force => true do |t|
-    t.date     "date"
+    t.datetime "date"
     t.string   "user_login"
     t.integer  "sample_type_id"
     t.integer  "sample_number"
