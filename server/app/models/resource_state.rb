@@ -10,4 +10,14 @@ class ResourceState < ActiveRecord::Base
       resource.name
     end
   end
+
+  def summary_hash
+    {
+      :id => id,
+      :name => name,
+      :sample_limit => sample_limit,
+      :chip_limit => chip_limit,
+      :resource_id => resource_id
+    }
+  end
 end
