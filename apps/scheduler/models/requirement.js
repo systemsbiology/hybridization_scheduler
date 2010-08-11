@@ -18,7 +18,11 @@ Scheduler.Requirement = SC.Record.extend(
 
   sampleType: SC.Record.toOne('Scheduler.SampleType', {key: 'sample_type_id'}),
 
-  resourceState: SC.Record.toOne('Scheduler.ResourceState', {key: 'resource_state_id'})
+  resourceState: SC.Record.toOne('Scheduler.ResourceState', {key: 'resource_state_id'}),
+
+  atCapacity: function(day) {
+    return NO;
+  }
 
 }) ;
 

@@ -14,6 +14,10 @@
 Scheduler.Day = SC.Object.extend(
 /** @scope Scheduler.Day.prototype */ {
 
+  reservations: [],
+
+  canAddHybridizations: YES,
+
   init: function() {
     sc_super();
     this.loadReservations();
@@ -43,19 +47,16 @@ Scheduler.Day = SC.Object.extend(
     this.set('reservations', results);
   },
 
-  canAddHybridizations: function() {
+  // check whether hybridizations can be added each time a new
+  // reservation for this day is added
+  reservationNumberDidChange: function() {
     var uniqueTypes,
         reservations = this.get('reservations');
 
     uniqueTypes = reservations.mapProperty('sampleType').uniq().length;
 
-    if(uniqueTypes >= 2) return NO
-    else return YES
-  }.property('reservations').cacheable(),
-
-  addHybridizationsMessage: function() {
-    if( this.get('canAddHybridizations') ) return ""
-    else return "The maximum number of hybridizations have already been reserved."
-  }.property('canAddHybridizations').cacheable(),
+    if(uniqueTypes >= 2) this.set('canAddHybridizations', NO)
+    else return this.set('canAddHybridizations', YES)
+  }.observes('reservations.length'),
 
 }) ;

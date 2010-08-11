@@ -84,7 +84,7 @@ Scheduler.mainPage = SC.Page.design({
       dateField: SCUI.DatePickerView.design({
         layout: { left: 150, top: 50, height: 24, width: 120 },
         dateFormat: '%m/%d/%Y',
-        dateBinding: 'Scheduler.hybridizationController.reservationDate',
+        dateBinding: 'Scheduler.reservationController.reservationDate',
       }),
 
       sampleTypeLabel: SC.LabelView.design({
@@ -93,11 +93,12 @@ Scheduler.mainPage = SC.Page.design({
       }),
 
       sampleTypeFields: SC.RadioView.design({
-        layoutBinding: 'Scheduler.hybridizationController.sampleTypeLayout',
+        layoutBinding: 'Scheduler.reservationController.sampleTypeLayout',
 
-        itemsBinding: 'Scheduler.hybridizationController.sampleTypeChoices',
+        itemsBinding: 'Scheduler.reservationController.sampleTypeChoices',
         itemTitleKey: 'name',
-        valueBinding: 'Scheduler.hybridizationController.sampleType',
+        itemValueKey: 'type',
+        valueBinding: 'Scheduler.reservationController.sampleType',
       }),
 
       numberOfSamplesLabel: SC.LabelView.design({
@@ -107,7 +108,7 @@ Scheduler.mainPage = SC.Page.design({
 
       numberOfSamplesField: SC.TextFieldView.design({
         layout: { left: 150, top: 86, width: 100, height: 20 },
-        valueBinding: 'Scheduler.hybridizationController.sampleNumber'
+        valueBinding: 'Scheduler.reservationController.sampleNumber'
       }),
 
       numberOfChipsLabel: SC.LabelView.design({
@@ -117,13 +118,13 @@ Scheduler.mainPage = SC.Page.design({
 
       numberOfChipsField: SC.TextFieldView.design({
         layout: { left: 150, top: 114, width: 100, height: 20 },
-        valueBinding: 'Scheduler.hybridizationController.chipNumber'
+        valueBinding: 'Scheduler.reservationController.chipNumber'
       }),
 
       cancelButton: SC.ButtonView.design({
         layout: { bottom: 10, right: 120, width: 100, height: 24 },
         title: 'Cancel',
-        target: 'Scheduler.hybridizationController',
+        target: 'Scheduler.reservationController',
         action: 'cancel'
       }),
 
@@ -131,7 +132,7 @@ Scheduler.mainPage = SC.Page.design({
         layout: { bottom: 10, right: 10, width: 100, height: 24 },
         title: 'Save',
         isDefault: YES,
-        target: 'Scheduler.hybridizationController',
+        target: 'Scheduler.reservationController',
         action: 'save'
       })
     })

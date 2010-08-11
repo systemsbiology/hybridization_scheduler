@@ -25,11 +25,6 @@ Scheduler.DayView = SC.View.extend(SC.Border,
     }
     context = context.begin('div').addClass('day-view');
     context = context.begin('div').addClass('date').push(date).end();
-    //context = context.begin('div').addClass('reservations');
-    //reservations.forEach(function(reservation) {
-    //  context = context.begin('div').addClass('reservation').push( reservation.get('userLogin') ).end();
-    //});
-    //context = context.end();
     context = context.end();
 	
     sc_super();
@@ -56,13 +51,19 @@ Scheduler.DayView = SC.View.extend(SC.Border,
     target: 'parentView',
     action: 'addReservation',
     isEnabledBinding: '.parentView.content.canAddHybridizations',
-    toolTipBinding: '.parentView.content.addHybridizationsMessage'
+    toolTipBinding: '.parentView.addButtonTooltip'
   }),
+
+  addButtonTooltip: function() {
+    if( this.getPath('content.canAddHybridizations') ) return ""
+    else return "The maximum number of hybridizations have already been reserved."
+  }.property('canAddHybridizations').cacheable(),
 
   addReservation: function() {
     var reservation = Scheduler.store.createRecord(Scheduler.Reservation, {});
     reservation.set('reservationDate', this.getPath('content.date'));
-    Scheduler.hybridizationController.set('content', reservation);
+    Scheduler.reservationController.set( 'day', this.get('content') );
+    Scheduler.reservationController.set('content', reservation);
     Scheduler.getPath('mainPage.addReservation').append() ;
   }
 });

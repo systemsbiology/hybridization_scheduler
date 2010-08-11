@@ -27,9 +27,9 @@ Scheduler.Reservation = SC.Record.extend(
   chipNumber: SC.Record.attr(String, {key: 'chip_number'}),
 
   displayName: function() {
-    var userLogin = this.get('userLogin'),
-        sampleNumber = this.get('sampleNumber'),
-        sampleTypeName = this.get('sampleType') && this.get('sampleType').get('name');
+    var userLogin = this.get('userLogin') || "",
+        sampleNumber = this.get('sampleNumber') || "",
+        sampleTypeName = this.get('sampleType') && this.get('sampleType').get('name') || "";
 
     return userLogin + ": " + sampleNumber + " " + sampleTypeName;
   }.property('userLogin', 'sampleNumber', 'sampleType').cacheable(),

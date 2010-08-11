@@ -1,5 +1,5 @@
 // ==========================================================================
-// Project:   Scheduler.hybridizationController
+// Project:   Scheduler.reservationController
 // Copyright: ©2010 My Company, Inc.
 // ==========================================================================
 /*globals Scheduler */
@@ -10,8 +10,10 @@
 
   @extends SC.Object
 */
-Scheduler.hybridizationController = SC.ObjectController.create(
-/** @scope Scheduler.hybridizationController.prototype */ {
+Scheduler.reservationController = SC.ObjectController.create(
+/** @scope Scheduler.reservationController.prototype */ {
+
+  day: null,
 
   cancel: function() {
     // discard the reservation that was being created
@@ -25,7 +27,21 @@ Scheduler.hybridizationController = SC.ObjectController.create(
   },
 
   sampleTypeChoices: function() {
-    return Scheduler.store.find(Scheduler.SampleType);
+    var ret = [],
+        day = Scheduler.reservationController.get('day'),
+        types = Scheduler.store.find(Scheduler.SampleType);
+
+    types.forEach(function(type) {
+      var availability = type.isAvailableForDay(day);
+
+      ret.pushObject({
+        type: type,
+        enabled: availability,
+        name: type.get('name')  
+      });
+    });
+
+    return ret;
   }.property().cacheable(),
 
   sampleTypeLayout: function() {
@@ -33,4 +49,5 @@ Scheduler.hybridizationController = SC.ObjectController.create(
 
     return { left: 150, top: 142, height: choices*28, width: 300 };
   }.property().cacheable(),
+
 }) ;
