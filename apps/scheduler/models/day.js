@@ -39,7 +39,7 @@ Scheduler.Day = SC.Object.extend(
 
     query = SC.Query.create({
       recordType: Scheduler.Reservation,
-      conditions: "reservationDate > {dayStart} AND reservationDate < {dayEnd} AND id != undefined",
+      conditions: "reservationDate > {dayStart} AND reservationDate < {dayEnd} AND (sampleNumber > 0 OR chipNumber > 0)",
       parameters: {dayStart: dayStart, dayEnd: dayEnd},
     });
 
