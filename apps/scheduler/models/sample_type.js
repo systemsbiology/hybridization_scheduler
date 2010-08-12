@@ -33,17 +33,8 @@ Scheduler.SampleType = SC.Record.extend(
   }.property().cacheable(),
 
   tooManyOtherSampleTypes: function(day) {
-    var query,
-        reservations;
+    var reservations = day.get('reservations');
    
-    query = SC.Query.create({
-      recordType: Scheduler.Reservation,
-      conditions: "reservationDate = {reservationDate} AND id != null",
-      parameters: {reservationDate: day.get('date')}
-    });
-
-    reservations = Scheduler.store.find(query);
-
     uniqueTypes = reservations.mapProperty('sampleType').uniq();
 
     // the current sample type is excluded
