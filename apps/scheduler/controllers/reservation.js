@@ -34,11 +34,11 @@ Scheduler.reservationController = SC.ObjectController.create(
     types.forEach(function(type) {
       var availability = type.isAvailableForDay(day);
 
-      ret.pushObject({
+      ret.pushObject(SC.Object.create({
         type: type,
         enabled: availability,
         name: type.get('name')  
-      });
+      }));
     });
 
     return ret;

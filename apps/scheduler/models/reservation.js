@@ -22,9 +22,9 @@ Scheduler.Reservation = SC.Record.extend(
 
   sampleType: SC.Record.toOne('Scheduler.SampleType', {key: 'sample_type_id'}),
 
-  sampleNumber: SC.Record.attr(String, {key: 'sample_number'}),
+  sampleNumber: SC.Record.attr(Number, {key: 'sample_number'}),
 
-  chipNumber: SC.Record.attr(String, {key: 'chip_number'}),
+  chipNumber: SC.Record.attr(Number, {key: 'chip_number'}),
 
   displayName: function() {
     var userLogin = this.get('userLogin') || "",

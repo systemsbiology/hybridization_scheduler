@@ -39,7 +39,7 @@ Scheduler.Day = SC.Object.extend(
 
     query = SC.Query.create({
       recordType: Scheduler.Reservation,
-      conditions: "reservationDate > {dayStart} AND reservationDate < {dayEnd}",
+      conditions: "reservationDate > {dayStart} AND reservationDate < {dayEnd} AND id != null",
       parameters: {dayStart: dayStart, dayEnd: dayEnd},
     });
 
@@ -50,13 +50,15 @@ Scheduler.Day = SC.Object.extend(
   // check whether hybridizations can be added each time a new
   // reservation for this day is added
   reservationNumberDidChange: function() {
-    var uniqueTypes,
-        reservations = this.get('reservations');
+    var types = Scheduler.store.find(Scheduler.SampleType),
+        canAddHybridizations = NO,
+        day = this;
 
-    uniqueTypes = reservations.mapProperty('sampleType').uniq().length;
+    types.forEach(function(type) {
+      if( type.isAvailableForDay(day) ) canAddHybridizations = YES;
+    });
 
-    if(uniqueTypes >= 2) this.set('canAddHybridizations', NO)
-    else return this.set('canAddHybridizations', YES)
+    this.set('canAddHybridizations', canAddHybridizations);
   }.observes('reservations.length'),
 
 }) ;

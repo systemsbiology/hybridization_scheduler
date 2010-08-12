@@ -98,6 +98,7 @@ Scheduler.mainPage = SC.Page.design({
         itemsBinding: 'Scheduler.reservationController.sampleTypeChoices',
         itemTitleKey: 'name',
         itemValueKey: 'type',
+        itemIsEnabledKey: 'enabled',
         valueBinding: 'Scheduler.reservationController.sampleType',
       }),
 

@@ -33,27 +33,37 @@ Scheduler.SampleType = SC.Record.extend(
   }.property().cacheable(),
 
   tooManyOtherSampleTypes: function(day) {
-    var reservations = day.get('reservations');
+    var query,
+        reservations;
+   
+    query = SC.Query.create({
+      recordType: Scheduler.Reservation,
+      conditions: "reservationDate = {reservationDate} AND id != null",
+      parameters: {reservationDate: day.get('date')}
+    });
+
+    reservations = Scheduler.store.find(query);
 
     uniqueTypes = reservations.mapProperty('sampleType').uniq();
 
     // the current sample type is excluded
     uniqueTypes.removeObject(this);
 
-    if(uniqueTypes.get('length') >= 2) return NO;
-    else return YES;
+    if(uniqueTypes.get('length') >= 2) return YES;
+    else return NO;
   },
 
   isAvailableForDay: function(day) {
     if( this.tooManyOtherSampleTypes(day) ) return NO;
 
-    var requirements = this.get('requirements');
+    var ret = YES,
+        requirements = this.get('requirements');
 
     requirements.forEach(function(requirement) {
-      if( requirement.atCapacity(day) ) return NO;
+      if( requirement.atCapacity(day) ) ret = NO;
     });
 
-    return YES;
+    return ret;
   }
 
 }) ;
