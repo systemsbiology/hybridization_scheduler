@@ -21,6 +21,14 @@ Scheduler.Requirement = SC.Record.extend(
   resourceState: SC.Record.toOne('Scheduler.ResourceState', {key: 'resource_state_id'}),
 
   atCapacity: function(day) {
+    return this._checkCapacity(day, false);
+  },
+
+  overCapacity: function(day) {
+    return this._checkCapacity(day, true);
+  },
+
+  _checkCapacity: function(day, allowFull) {
     var reservations = day.get('reservations'),
         samples = 0,
         chips = 0,
@@ -40,12 +48,18 @@ Scheduler.Requirement = SC.Record.extend(
     var sampleLimit = resourceState.get('sampleLimit');
     var chipLimit = resourceState.get('chipLimit');
 
-    if( (sampleLimit && samples >= sampleLimit) ||
-        (chipLimit && chips >= chipLimit) ) {
-      return YES;
-    } else return NO;
+    if(allowFull) {
+      if( (sampleLimit && samples > sampleLimit) ||
+          (chipLimit && chips > chipLimit) ) {
+        return YES;
+      } else return NO;
+    } else {
+      if( (sampleLimit && samples >= sampleLimit) ||
+          (chipLimit && chips >= chipLimit) ) {
+        return YES;
+      } else return NO;
+    }
   }
-
 }) ;
 
 Scheduler.REQUIREMENTS_QUERY = SC.Query.create({recordType: Scheduler.Requirement});

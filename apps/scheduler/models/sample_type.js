@@ -55,6 +55,19 @@ Scheduler.SampleType = SC.Record.extend(
     });
 
     return ret;
+  },
+
+  isWithinCapacityForDay: function(day) {
+    if( this.tooManyOtherSampleTypes(day) ) return NO;
+
+    var ret = YES,
+        requirements = this.get('requirements');
+
+    requirements.forEach(function(requirement) {
+      if( requirement.overCapacity(day) ) ret = NO;
+    });
+
+    return ret;
   }
 
 }) ;

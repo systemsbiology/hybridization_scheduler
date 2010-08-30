@@ -33,6 +33,17 @@ Scheduler.Reservation = SC.Record.extend(
 
     return userLogin + ": " + sampleNumber + " " + sampleTypeName;
   }.property('userLogin', 'sampleNumber', 'sampleType').cacheable(),
+
+  isWithinCapacity: function() {
+    var type = this.get('sampleType'),
+        day = Scheduler.reservationController.get('day');
+
+    if( SC.none(type) || SC.none(day) ) return YES;
+
+    if( type.isWithinCapacityForDay(day) ) return YES;
+    else return NO;
+  }.property('sampleNumber', 'chipNumber', 'sampleType', 'reservationDate').cacheable(),
+
 }) ;
 
 Scheduler.RESERVATIONS_QUERY = SC.Query.create({recordType: Scheduler.Reservation, orderBy: 'name ASC'});

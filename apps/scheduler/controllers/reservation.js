@@ -48,6 +48,6 @@ Scheduler.reservationController = SC.ObjectController.create(
     var choices = this.get('sampleTypeChoices').get('length');
 
     return { left: 150, top: 142, height: choices*28, width: 300 };
-  }.property().cacheable(),
+  }.property().cacheable()
 
 }) ;

@@ -64,6 +64,7 @@ Scheduler.DayView = SC.View.extend(SC.Border,
     reservation.set('reservationDate', this.getPath('content.date'));
     Scheduler.reservationController.set( 'day', this.get('content') );
     Scheduler.reservationController.set('content', reservation);
-    Scheduler.getPath('mainPage.addReservation').append() ;
+    pane = Scheduler.getPath('mainPage.addReservation')
+    pane.append().awake() ;
   }
 });
