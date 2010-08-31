@@ -61,4 +61,9 @@ Scheduler.Day = SC.Object.extend(
     this.set('canAddHybridizations', canAddHybridizations);
   }.observes('reservations.length'),
 
+  canAddMessage: function() {
+    if( this.get('canAddHybridizations') ) return ""
+    else return "The maximum number of hybridizations have already been reserved."
+  }.property('canAddHybridizations').cacheable(),
+
 }) ;

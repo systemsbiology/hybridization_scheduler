@@ -51,13 +51,8 @@ Scheduler.DayView = SC.View.extend(SC.Border,
     target: 'parentView',
     action: 'addReservation',
     isEnabledBinding: '.parentView.content.canAddHybridizations',
-    toolTipBinding: '.parentView.addButtonTooltip'
+    toolTipBinding: '.parentView.content.canAddMessage'
   }),
-
-  addButtonTooltip: function() {
-    if( this.get('canAddHybridizations') ) return ""
-    else return "The maximum number of hybridizations have already been reserved."
-  }.property('canAddHybridizations').cacheable(),
 
   addReservation: function() {
     var reservation = Scheduler.store.createRecord(Scheduler.Reservation, {});
