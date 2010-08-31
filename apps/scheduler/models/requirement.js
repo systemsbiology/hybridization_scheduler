@@ -59,7 +59,14 @@ Scheduler.Requirement = SC.Record.extend(
         return YES;
       } else return NO;
     }
-  }
+  },
+
+  exceedsMessage: function() {
+    var type = this.get('sampleType'),
+        state = this.get('resourceState');
+    
+    return state.get('limitMessage');
+  }.property().cacheable(),
 }) ;
 
 Scheduler.REQUIREMENTS_QUERY = SC.Query.create({recordType: Scheduler.Requirement});

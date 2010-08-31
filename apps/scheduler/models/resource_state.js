@@ -36,7 +36,38 @@ Scheduler.ResourceState = SC.Record.extend(
     ret = Scheduler.store.find(query);
 
     return ret;
-  }.property().cacheable()
+  }.property().cacheable(),
+
+  fullName: function() {
+    var name = this.get('name'),
+        resource = this.get('resource'),
+        ret;
+
+    ret = resource.get('name');
+
+    if(name) ret += " (" + name + ")";
+
+    return ret;
+  }.property('name', 'resource').cacheable(),
+
+  limitMessage: function() {
+    var fullName = this.get('fullName'),
+        sampleLimit = this.get('sampleLimit'),
+        chipLimit = this.get('chipLimit'),
+        ret;
+
+    ret = fullName + " is limited to";
+
+    if( sampleLimit ) {
+      ret += " " + sampleLimit + " samples"; 
+
+      if( chipLimit) ret += " and " + chipLimit + " chips";
+    } else if( chipLimit) ret += " " + chipLimit + " chips";
+
+    ret += ". ";
+
+    return ret;
+  }.property('sampleLimit', 'chipLimit', 'fullName').cacheable(),
 }) ;
 
 Scheduler.RESOURCE_STATES_QUERY = SC.Query.create({recordType: Scheduler.ResourceState});

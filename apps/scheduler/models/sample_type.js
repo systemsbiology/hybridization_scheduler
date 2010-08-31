@@ -68,8 +68,20 @@ Scheduler.SampleType = SC.Record.extend(
     });
 
     return ret;
-  }
+  },
 
+  warningMessageForDay: function(day) {
+    if( this.isWithinCapacityForDay(day) ) return "";
+
+    var ret = "",
+        requirements = this.get('requirements');
+
+    requirements.forEach(function(requirement) {
+      if( requirement.overCapacity(day) ) ret += requirement.get('exceedsMessage');
+    });
+
+    return ret;
+  }
 }) ;
 
 Scheduler.SAMPLE_TYPES_QUERY = SC.Query.create({recordType: Scheduler.SampleType, orderBy: 'name ASC'});

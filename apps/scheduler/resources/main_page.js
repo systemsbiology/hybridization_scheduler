@@ -65,7 +65,7 @@ Scheduler.mainPage = SC.Page.design({
     layout: { centerX: 0, centerY: 0, width: 450, height: 400 },
 
     contentView: SC.View.design({
-      childViews: 'title dateField dateLabel sampleTypeLabel sampleTypeFields numberOfSamplesField numberOfSamplesLabel numberOfChipsField numberOfChipsLabel cancelButton saveButton'.w(),
+      childViews: 'title dateField dateLabel sampleTypeLabel sampleTypeFields numberOfSamplesField numberOfSamplesLabel numberOfChipsField numberOfChipsLabel warningMessage cancelButton saveButton'.w(),
 
       title: SC.LabelView.design({
         layout: { centerX: 0, top: 10, width: 200, height: 32 },
@@ -92,16 +92,27 @@ Scheduler.mainPage = SC.Page.design({
         value: 'Sample Type',
       }),
 
-      sampleTypeFields: SC.RadioView.design({
-        layoutBinding: 'Scheduler.reservationController.sampleTypeLayout',
+      sampleTypeFields: SC.ScrollView.design({
+        layout: { left: 150, top: 142, height: 120, width: 300 },
+        borderStyle: SC.BORDER_NONE,
 
-        itemsBinding: 'Scheduler.reservationController.sampleTypeChoices',
-        itemTitleKey: 'name',
-        itemValueKey: 'type',
-        itemIsEnabledKey: 'enabled',
-        valueBinding: 'Scheduler.reservationController.sampleType',
+        contentView: SC.RadioView.design({
+          layoutBinding: 'Scheduler.reservationController.sampleTypeLayout',
+
+          itemsBinding: 'Scheduler.reservationController.sampleTypeChoices',
+          itemTitleKey: 'name',
+          itemValueKey: 'type',
+          itemIsEnabledKey: 'enabled',
+          valueBinding: 'Scheduler.reservationController.sampleType',
+        })
       }),
 
+      warningMessage: SC.LabelView.design({
+        layout: { left: 20, right: 20, top: 280, bottom: 40 },
+        iconBinding: 'Scheduler.reservationController.warningIcon',
+        valueBinding: 'Scheduler.reservationController.warningMessage'
+      }),
+        
       numberOfSamplesLabel: SC.LabelView.design({
         layout: { left: 20, top: 86, height: 20, width: 120 },
         value: 'Number of samples'

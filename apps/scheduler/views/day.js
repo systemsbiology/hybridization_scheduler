@@ -55,7 +55,7 @@ Scheduler.DayView = SC.View.extend(SC.Border,
   }),
 
   addButtonTooltip: function() {
-    if( this.getPath('content.canAddHybridizations') ) return ""
+    if( this.get('canAddHybridizations') ) return ""
     else return "The maximum number of hybridizations have already been reserved."
   }.property('canAddHybridizations').cacheable(),
 

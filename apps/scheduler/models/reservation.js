@@ -44,6 +44,20 @@ Scheduler.Reservation = SC.Record.extend(
     else return NO;
   }.property('sampleNumber', 'chipNumber', 'sampleType', 'reservationDate').cacheable(),
 
+  warningMessage: function() {
+    var type = this.get('sampleType'),
+        day = Scheduler.reservationController.get('day');
+
+    if( SC.none(type) || SC.none(day) ) return "";
+
+    return type.warningMessageForDay(day);
+  }.property('sampleNumber', 'chipNumber', 'sampleType', 'reservationDate').cacheable(),
+
+  warningIcon: function() {
+    if( this.get('isWithinCapacity') ) return ''
+    else return 'sc-icon-alert-16'
+  }.property('isWithinCapacity').cacheable(),
+
 }) ;
 
 Scheduler.RESERVATIONS_QUERY = SC.Query.create({recordType: Scheduler.Reservation, orderBy: 'name ASC'});

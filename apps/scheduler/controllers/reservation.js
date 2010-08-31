@@ -28,7 +28,7 @@ Scheduler.reservationController = SC.ObjectController.create(
 
   sampleTypeChoices: function() {
     var ret = [],
-        day = Scheduler.reservationController.get('day'),
+        day = this.get('day'),
         types = Scheduler.store.find(Scheduler.SampleType);
 
     types.forEach(function(type) {
@@ -47,7 +47,7 @@ Scheduler.reservationController = SC.ObjectController.create(
   sampleTypeLayout: function() {
     var choices = this.get('sampleTypeChoices').get('length');
 
-    return { left: 150, top: 142, height: choices*28, width: 300 };
+    return { height: choices*28 };
   }.property().cacheable()
 
 }) ;
