@@ -58,6 +58,23 @@ Scheduler.Reservation = SC.Record.extend(
     else return 'sc-icon-alert-16'
   }.property('isWithinCapacity').cacheable(),
 
+  infoMessage: function() {
+    var ret = "",
+        day = Scheduler.reservationController.get('day'),
+        types = Scheduler.store.find(Scheduler.SampleType);
+
+    types.forEach(function(type) {
+      ret += type.availabilityMessageForDay(day);
+    });
+
+    return ret;
+  }.property().cacheable(),
+
+  infoIcon: function() {
+    if( this.get('infoMessage') == "" ) return ''
+    else return 'sc-icon-info-16'
+  }.property('isWithinCapacity').cacheable(),
+
   isValid: function() {
     var sampleType = this.get('sampleType'),
         sampleNumber = this.get('sampleNumber'),

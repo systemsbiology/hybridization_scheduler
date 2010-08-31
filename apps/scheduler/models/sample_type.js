@@ -81,7 +81,25 @@ Scheduler.SampleType = SC.Record.extend(
     });
 
     return ret;
+  },
+
+  availabilityMessageForDay: function(day) {
+    var name = this.get('name');
+    
+    if( this.tooManyOtherSampleTypes(day) ) return name + " not available since too many other platforms are being used. ";
+
+    var ret = "",
+        requirements = this.get('requirements');
+
+    requirements.forEach(function(requirement) {
+      if( requirement.atCapacity(day) ) {
+        ret += name + " not available since " + requirement.get('exceedsMessage');
+      }
+    });
+
+    return ret;
   }
+
 }) ;
 
 Scheduler.SAMPLE_TYPES_QUERY = SC.Query.create({recordType: Scheduler.SampleType, orderBy: 'name ASC'});

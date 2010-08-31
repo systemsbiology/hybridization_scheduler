@@ -62,10 +62,10 @@ Scheduler.mainPage = SC.Page.design({
   // date field gets initialized to null the first time the pane is displayed (but
   // not subsequent times).
   addReservation: SC.PanelPane.create({
-    layout: { centerX: 0, centerY: 0, width: 450, height: 400 },
+    layout: { centerX: 0, centerY: 0, width: 450, height: 500 },
 
     contentView: SC.View.design({
-      childViews: 'title dateField dateLabel sampleTypeLabel sampleTypeFields numberOfSamplesField numberOfSamplesLabel numberOfChipsField numberOfChipsLabel warningMessage cancelButton saveButton'.w(),
+      childViews: 'title dateField dateLabel sampleTypeLabel sampleTypeFields numberOfSamplesField numberOfSamplesLabel numberOfChipsField numberOfChipsLabel warningMessage infoMessage cancelButton saveButton'.w(),
 
       title: SC.LabelView.design({
         layout: { centerX: 0, top: 10, width: 200, height: 32 },
@@ -107,8 +107,14 @@ Scheduler.mainPage = SC.Page.design({
         })
       }),
 
+      infoMessage: SC.LabelView.design({
+        layout: { left: 20, right: 20, top: 280, height: 60 },
+        iconBinding: 'Scheduler.reservationController.infoIcon',
+        valueBinding: 'Scheduler.reservationController.infoMessage'
+      }),
+        
       warningMessage: SC.LabelView.design({
-        layout: { left: 20, right: 20, top: 280, bottom: 40 },
+        layout: { left: 20, right: 20, top: 350, bottom: 40 },
         iconBinding: 'Scheduler.reservationController.warningIcon',
         valueBinding: 'Scheduler.reservationController.warningMessage'
       }),
