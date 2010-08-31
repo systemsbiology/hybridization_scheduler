@@ -58,6 +58,19 @@ Scheduler.Reservation = SC.Record.extend(
     else return 'sc-icon-alert-16'
   }.property('isWithinCapacity').cacheable(),
 
+  isValid: function() {
+    var sampleType = this.get('sampleType'),
+        sampleNumber = this.get('sampleNumber'),
+        chipNumber = this.get('chipNumber');
+
+    if( sampleType && this._isNumber(sampleNumber) && this._isNumber(chipNumber) ) return YES
+    else return NO
+  }.property('sampleType', 'sampleNumber', 'chipNumber').cacheable(),
+
+  _isNumber: function(o) {
+      return typeof o === 'number' && isFinite(o);
+  }
+  
 }) ;
 
 Scheduler.RESERVATIONS_QUERY = SC.Query.create({recordType: Scheduler.Reservation, orderBy: 'name ASC'});

@@ -22,8 +22,12 @@ Scheduler.reservationController = SC.ObjectController.create(
   },
 
   save: function() {
-    Scheduler.store.commitRecords();
-    Scheduler.getPath('mainPage.addReservation').remove() ;
+    if( this.get('isValid') ) {
+      Scheduler.store.commitRecords();
+      Scheduler.getPath('mainPage.addReservation').remove() ;
+    } else {
+      SC.AlertPane.warn("Please enter all fields in the form.");
+    }
   },
 
   sampleTypeChoices: function() {
