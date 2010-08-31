@@ -54,7 +54,7 @@ Scheduler.Reservation = SC.Record.extend(
   }.property('sampleNumber', 'chipNumber', 'sampleType', 'reservationDate').cacheable(),
 
   warningIcon: function() {
-    if( this.get('isWithinCapacity') ) return ''
+    if( this.get('warningMessage') == "" ) return ''
     else return 'sc-icon-alert-16'
   }.property('isWithinCapacity').cacheable(),
 
