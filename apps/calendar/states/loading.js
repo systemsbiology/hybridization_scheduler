@@ -20,6 +20,7 @@ Calendar.LOADING = SC.Responder.create(
   nextResponder: null,
   
   didBecomeFirstResponder: function() {
+    Calendar.set('currentScene', 'loading');
     Calendar.initialDataController.load();
   },
   

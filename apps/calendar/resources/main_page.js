@@ -11,6 +11,27 @@ Calendar.mainPage = SC.Page.design({
   // Add childViews to this pane for views to display immediately on page 
   // load.
   mainPane: SC.MainPane.design({
+    childViews: 'sceneView'.w(),
+
+    sceneView: SC.SceneView.design({
+      scenes: "loading ready".w(),
+      nowShowingBinding: "Calendar.currentScene"
+    }),
+  }),
+
+  loading: SC.View.design({
+    childViews: 'message'.w(),
+
+    message: SC.LabelView.design({
+      layout: { width: 400, height: 32, centerX: 0, centerY: 0 },
+      controlSize: SC.LARGE_CONTROL_SIZE,
+      fontWeight: SC.BOLD_WEIGHT,
+      textAlign: SC.ALIGN_CENTER,
+      value: 'Loading...'
+    })
+  }),
+
+  ready: SC.View.design({
     childViews: 'toolbar calendar'.w(),
     
     toolbar: SC.ToolbarView.design({

@@ -15,6 +15,8 @@ sc_require('states/loading');
 //
 Calendar.main = function main() {
 
+  Calendar.getPath('mainPage.mainPane').append() ;
+
   Calendar.makeFirstResponder(Calendar.LOADING);
 
 } ;

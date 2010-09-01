@@ -20,7 +20,7 @@ Calendar.READY = SC.Responder.create(
   nextResponder: null,
   
   didBecomeFirstResponder: function() {
-    Calendar.getPath('mainPage.mainPane').append() ;
+    Calendar.set('currentScene', 'ready');
   },
   
   willLoseFirstResponder: function() {
