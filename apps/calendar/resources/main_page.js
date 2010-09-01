@@ -173,7 +173,6 @@ Calendar.mainPage = SC.Page.design({
         title: 'Cancel',
         target: 'Calendar.reservationController',
         action: 'cancel',
-        isVisibleBinding: SC.Binding.from('Calendar.reservationController.isEditing').not()
       }),
 
       saveButton: SC.ButtonView.design({

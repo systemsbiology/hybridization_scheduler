@@ -15,11 +15,13 @@ Calendar.reservationController = SC.ObjectController.create(
 
   day: null,
 
+  savedAttributes: null,
+
   isEditing: function() {
     var reservation = this.get('content');
 
-    if(reservation && reservation.get('status') === SC.Record.READY_CLEAN) return YES
-    else return NO
+    if(reservation && reservation.get('status') === SC.Record.READY_NEW) return NO
+    else return YES
   }.property().cacheable(),
 
   dialogTitle: function() {
@@ -33,7 +35,16 @@ Calendar.reservationController = SC.ObjectController.create(
     if(reservation.get('status') === SC.Record.READY_NEW) {
       // discard the reservation that was being created
       reservation.destroy();
-    }    
+    } else {
+      // Make an SC.Object so that forEach can be used
+      var attributes = this.get('savedAttributes');
+
+      reservation.beginEditing();
+      for(var key in attributes) {
+        reservation.writeAttribute(key, attributes[key]);
+      }
+      reservation.endEditing();
+    }
 
     Calendar.getPath('mainPage.reservation').remove() ;
   },

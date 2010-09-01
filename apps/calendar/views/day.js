@@ -69,6 +69,7 @@ Calendar.DayView = SC.View.extend(SC.Border,
     var reservation = this.getPath('reservationScrollView.contentView.selection.firstObject');
     Calendar.reservationController.set('content', reservation);
     Calendar.reservationController.set( 'day', this.get('content') );
+    Calendar.reservationController.set( 'savedAttributes', SC.copy(reservation.get('attributes')) );
     pane = Calendar.getPath('mainPage.reservation')
     pane.append().awake() ;
   }
