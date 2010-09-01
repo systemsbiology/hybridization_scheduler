@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100806203734) do
+ActiveRecord::Schema.define(:version => 20100901220910) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "login"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20100806203734) do
     t.integer  "chip_number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "description"
   end
 
   create_table "resource_states", :force => true do |t|
