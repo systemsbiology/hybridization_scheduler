@@ -6,6 +6,7 @@ class Reservation < ActiveRecord::Base
       :id => id,
       :date => date,
       :user_login => user_login,
+      :description => description,
       :sample_type_id => sample_type_id,
       :sample_number => sample_number,
       :chip_number => chip_number
