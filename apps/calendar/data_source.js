@@ -75,7 +75,9 @@ Calendar.DataSource = SC.DataSource.extend(
   
   createRecord: function(store, storeKey) {
     if (SC.kindOf(store.recordTypeFor(storeKey), Calendar.Reservation)) {
-      SC.Request.postUrl('/scheduler/reservations.json')
+      var url = this._urlFor('reservation');
+
+      SC.Request.postUrl(url)
         .header({
           'Accept': 'application/json'
         }).json()
@@ -88,26 +90,61 @@ Calendar.DataSource = SC.DataSource.extend(
   
   didCreateReservation: function(response, store, storeKey) {
     if (SC.ok(response)) {
-      var url = response.header('Location');
-      store.dataSourceDidComplete(storeKey, response.get('body').reservation, url); // update url
+      store.dataSourceDidComplete(storeKey, response.get('body').reservation, response.get('body').reservation.id);
    
     } else store.dataSourceDidError(storeKey, response);
   },
 
   updateRecord: function(store, storeKey) {
-    
-    // TODO: Add handlers to submit modified record to the data source
-    // call store.dataSourceDidComplete(storeKey) when done.
+    if (SC.kindOf(store.recordTypeFor(storeKey), Calendar.Reservation)) {
+      var id = store.idFor(storeKey);
+      var url = this._urlFor('reservation', id);
 
-    return NO ; // return YES if you handled the storeKey
+      SC.Request.putUrl(url)
+        .header({
+          'Accept': 'application/json'
+        }).json()
+        .notify(this, this.didUpdateReservation, store, storeKey)
+        .send( {reservation: store.readDataHash(storeKey)} );
+      return YES;
+
+    } else return NO;
   },
   
+  didUpdateReservation: function(response, store, storeKey) {
+    if (SC.ok(response)) {
+      store.dataSourceDidComplete(storeKey, response.get('body').reservation);
+   
+    } else store.dataSourceDidError(storeKey, response);
+  },
+
   destroyRecord: function(store, storeKey) {
-    
-    // TODO: Add handlers to destroy records on the data source.
-    // call store.dataSourceDidDestroy(storeKey) when done
-    
-    return NO ; // return YES if you handled the storeKey
-  }
+    if (SC.kindOf(store.recordTypeFor(storeKey), Calendar.Reservation)) {
+      var id = store.idFor(storeKey);
+      var url = this._urlFor('reservation', id);
+      SC.Request.deleteUrl(url).json()
+        .notify(this, this.didDestroyReservation, store, storeKey)
+        .send();
+      return YES;
+
+    } else return NO;
+  },
+
+  didDestroyReservation: function(response, store, storeKey) {
+    if (SC.ok(response)) {
+      store.dataSourceDidDestroy(storeKey);
+    } else store.dataSourceDidError(response);
+  },
   
+  /** @private
+    Produce URLs for Rails resources
+  */
+  _urlFor: function(resourceName, id) {
+    if(id) {
+      return '/scheduler/' + resourceName + 's/' + id + '.json';
+    } else {
+      return '/scheduler/' + resourceName + 's.json';
+    }
+  }
+
 }) ;

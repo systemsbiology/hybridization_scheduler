@@ -29,6 +29,8 @@ Calendar.Requirement = SC.Record.extend(
   },
 
   _checkCapacity: function(day, allowFull) {
+    if(!day) return NO;
+
     var reservations = day.get('reservations'),
         samples = 0,
         chips = 0,

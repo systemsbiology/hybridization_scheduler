@@ -82,18 +82,18 @@ Calendar.mainPage = SC.Page.design({
   // runs prior to setting the content for the hybridization controller. Otherwise,
   // date field gets initialized to null the first time the pane is displayed (but
   // not subsequent times).
-  addReservation: SC.PanelPane.create({
+  reservation: SC.PanelPane.create({
     layout: { centerX: 0, centerY: 0, width: 450, height: 500 },
 
     contentView: SC.View.design({
-      childViews: 'title dateField dateLabel sampleTypeLabel sampleTypeFields numberOfSamplesField numberOfSamplesLabel numberOfChipsField numberOfChipsLabel warningMessage infoMessage cancelButton saveButton'.w(),
+      childViews: 'title dateField dateLabel sampleTypeLabel sampleTypeFields numberOfSamplesField numberOfSamplesLabel numberOfChipsField numberOfChipsLabel warningMessage infoMessage deleteButton cancelButton saveButton'.w(),
 
       title: SC.LabelView.design({
         layout: { centerX: 0, top: 10, width: 200, height: 32 },
         textAlign: SC.ALIGN_CENTER,
         controlSize: SC.LARGE_CONTROL_SIZE,
 
-        value: 'Add Hybridizations'
+        valueBinding: 'Calendar.reservationController.dialogTitle'
       }),
 
       dateLabel: SC.LabelView.design({
@@ -114,7 +114,7 @@ Calendar.mainPage = SC.Page.design({
       }),
 
       sampleTypeFields: SC.ScrollView.design({
-        layout: { left: 150, top: 142, height: 120, width: 300 },
+        layout: { left: 150, top: 142, height: 120, right: 10 },
         borderStyle: SC.BORDER_NONE,
 
         contentView: SC.RadioView.design({
@@ -160,11 +160,20 @@ Calendar.mainPage = SC.Page.design({
         valueBinding: 'Calendar.reservationController.chipNumber'
       }),
 
+      deleteButton: SC.ButtonView.design({
+        layout: { bottom: 10, left: 10, width: 100, height: 24 },
+        title: 'Delete',
+        target: 'Calendar.reservationController',
+        action: 'destroy',
+        isVisibleBinding: 'Calendar.reservationController.isEditing'
+      }),
+
       cancelButton: SC.ButtonView.design({
         layout: { bottom: 10, right: 120, width: 100, height: 24 },
         title: 'Cancel',
         target: 'Calendar.reservationController',
-        action: 'cancel'
+        action: 'cancel',
+        isVisibleBinding: SC.Binding.from('Calendar.reservationController.isEditing').not()
       }),
 
       saveButton: SC.ButtonView.design({

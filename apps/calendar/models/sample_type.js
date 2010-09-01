@@ -33,6 +33,8 @@ Calendar.SampleType = SC.Record.extend(
   }.property().cacheable(),
 
   tooManyOtherSampleTypes: function(day) {
+    if(!day) return NO;
+
     var reservations = day.get('reservations');
    
     uniqueTypes = reservations.mapProperty('sampleType').uniq();

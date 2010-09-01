@@ -15,16 +15,39 @@ Calendar.reservationController = SC.ObjectController.create(
 
   day: null,
 
+  isEditing: function() {
+    var reservation = this.get('content');
+
+    if(reservation && reservation.get('status') === SC.Record.READY_CLEAN) return YES
+    else return NO
+  }.property().cacheable(),
+
+  dialogTitle: function() {
+    if( this.get('isEditing') ) return "Edit Hybridization"
+    else return "Add Hybridization"
+  }.property().cacheable(),
+
   cancel: function() {
-    // discard the reservation that was being created
+    var reservation = this.get('content');
+
+    if(reservation.get('status') === SC.Record.READY_NEW) {
+      // discard the reservation that was being created
+      reservation.destroy();
+    }    
+
+    Calendar.getPath('mainPage.reservation').remove() ;
+  },
+
+  destroy: function() {
     this.get('content').destroy();
-    Calendar.getPath('mainPage.addReservation').remove() ;
+    Calendar.store.commitRecords();
+    Calendar.getPath('mainPage.reservation').remove() ;
   },
 
   save: function() {
     if( this.get('isValid') ) {
       Calendar.store.commitRecords();
-      Calendar.getPath('mainPage.addReservation').remove() ;
+      Calendar.getPath('mainPage.reservation').remove() ;
     } else {
       SC.AlertPane.warn("Please enter all fields in the form.");
     }
@@ -51,7 +74,7 @@ Calendar.reservationController = SC.ObjectController.create(
   sampleTypeLayout: function() {
     var choices = this.get('sampleTypeChoices').get('length');
 
-    return { height: choices*28 };
+    return { height: choices*20 };
   }.property().cacheable(),
 
 }) ;
