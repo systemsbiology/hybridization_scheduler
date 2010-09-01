@@ -45,10 +45,11 @@ Calendar.Day = SC.Object.extend(
 
     results = Calendar.store.find(query);
     this.set('reservations', results);
+    if(results.get('length') > 0) this.reservationNumberDidChange();
   },
 
-  // check whether hybridizations can be added each time a new
-  // reservation for this day is added
+  // check whether hybridizations can be added each time 
+  // the reservations change
   reservationNumberDidChange: function() {
     var types = Calendar.store.find(Calendar.SampleType),
         canAddHybridizations = NO,
