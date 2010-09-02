@@ -189,7 +189,7 @@ Calendar.mainPage = SC.Page.design({
         layout: { bottom: 10, right: 10, width: 100, height: 24 },
         title: 'Save',
         isDefault: YES,
-        isEnabledBinding: 'Calendar.reservationController.isWithinCapacity',
+        isEnabledBinding: 'Calendar.reservationController.canSave',
         target: 'Calendar.reservationController',
         action: 'save'
       })

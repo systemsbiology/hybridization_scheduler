@@ -51,6 +51,12 @@ Calendar.Day = SC.Object.extend(
   // check whether hybridizations can be added each time 
   // the reservations change
   reservationNumberDidChange: function() {
+    // Admins are all-powerful
+    if( Calendar.get('admin') ) {
+      this.set('canAddHybridizations', YES);
+      return;
+    }
+    
     var types = Calendar.store.find(Calendar.SampleType),
         canAddHybridizations = NO,
         day = this;

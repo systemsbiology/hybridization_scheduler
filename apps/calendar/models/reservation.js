@@ -47,6 +47,12 @@ Calendar.Reservation = SC.Record.extend(
     else return NO;
   }.property('sampleNumber', 'chipNumber', 'sampleType', 'reservationDate').cacheable(),
 
+  canSave: function() {
+    // Admins are all-powerful
+    if( Calendar.get('admin') ) return YES;
+    else return this.get('isWithinCapacity');
+  }.property('isWithinCapacity').cacheable(),
+
   warningMessage: function() {
     var type = this.get('sampleType'),
         day = Calendar.reservationController.get('day');
@@ -81,9 +87,11 @@ Calendar.Reservation = SC.Record.extend(
   isValid: function() {
     var sampleType = this.get('sampleType'),
         sampleNumber = this.get('sampleNumber'),
-        chipNumber = this.get('chipNumber');
+        chipNumber = this.get('chipNumber'),
+        description = this.get('description');
 
-    if( sampleType && this._isNumber(sampleNumber) && this._isNumber(chipNumber) ) return YES
+    if( description && description.length > 0 && sampleType && this._isNumber(sampleNumber) &&
+        this._isNumber(chipNumber) ) return YES
     else return NO
   }.property('sampleType', 'sampleNumber', 'chipNumber').cacheable(),
 

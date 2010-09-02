@@ -23,8 +23,8 @@ Calendar = SC.Application.create(
   //store: SC.Store.create().from(SC.Record.fixtures)
   store: SC.Store.create({
   	commitRecordsAutomatically: NO
-  }).from('Calendar.DataSource')
+  }).from('Calendar.DataSource'),
   
-  // TODO: Add global constants or singleton objects needed by your app here.
+  admin: NO
 
 }) ;

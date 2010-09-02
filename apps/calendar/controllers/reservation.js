@@ -70,7 +70,11 @@ Calendar.reservationController = SC.ObjectController.create(
         types = Calendar.store.find(Calendar.SampleType);
 
     types.forEach(function(type) {
-      var availability = type.isAvailableForDay(day);
+      var availability;
+
+      // Admins are all-powerful
+      if( Calendar.get('admin') ) availability = YES;
+      else availability = type.isAvailableForDay(day);
 
       ret.pushObject(SC.Object.create({
         type: type,

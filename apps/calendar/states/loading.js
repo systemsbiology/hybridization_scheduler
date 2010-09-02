@@ -22,6 +22,7 @@ Calendar.LOADING = SC.Responder.create(
   didBecomeFirstResponder: function() {
     Calendar.set('currentScene', 'loading');
     Calendar.initialDataController.load();
+    Calendar.authorizationController.checkAuthorization();
   },
   
   willLoseFirstResponder: function() {
