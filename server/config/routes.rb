@@ -14,7 +14,7 @@ Server::Application.routes.draw do
 
   resources :sample_types
 
-  root :to => "requirements#index"
+  root :to => "ui#calendar"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
