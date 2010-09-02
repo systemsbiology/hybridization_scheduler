@@ -4,6 +4,8 @@
 // ==========================================================================
 /*globals Calendar */
 
+sc_require('views/reservation');
+
 /** @class
 
   (Document Your View Here)
@@ -39,10 +41,11 @@ Calendar.DayView = SC.View.extend(SC.Border,
     borderStyle: SC.BORDER_NONE,
 
     contentView: SC.ListView.extend({
+      rowHeight: 40,
       contentBinding: '.parentView.parentView.parentView.content.reservations',
-      contentValueKey: 'displayName',
       target: 'parentView.parentView.parentView',
-      action: 'editReservation'
+      action: 'editReservation',
+      exampleView: Calendar.ReservationView,
     })
   }),
 

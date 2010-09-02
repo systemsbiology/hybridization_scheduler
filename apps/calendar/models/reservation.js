@@ -34,7 +34,7 @@ Calendar.Reservation = SC.Record.extend(
         chipNumber = this.get('chipNumber') || "",
         sampleTypeName = this.get('sampleType') && this.get('sampleType').get('name') || "";
 
-    return description + ": " + sampleNumber + " (" + chipNumber + ") " + sampleTypeName;
+    return description + ": " + sampleNumber + " (" + chipNumber + ")<br>" + sampleTypeName;
   }.property('userLogin', 'sampleNumber', 'sampleType').cacheable(),
 
   isWithinCapacity: function() {
