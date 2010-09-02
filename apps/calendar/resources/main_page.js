@@ -86,7 +86,7 @@ Calendar.mainPage = SC.Page.design({
     layout: { centerX: 0, centerY: 0, width: 450, height: 500 },
 
     contentView: SC.View.design({
-      childViews: 'title dateField dateLabel sampleTypeLabel sampleTypeFields numberOfSamplesField numberOfSamplesLabel numberOfChipsField numberOfChipsLabel warningMessage infoMessage deleteButton cancelButton saveButton'.w(),
+      childViews: 'title dateField dateLabel sampleTypeLabel sampleTypeFields descriptionLabel descriptionField numberOfSamplesField numberOfSamplesLabel numberOfChipsField numberOfChipsLabel warningMessage infoMessage deleteButton cancelButton saveButton'.w(),
 
       title: SC.LabelView.design({
         layout: { centerX: 0, top: 10, width: 200, height: 32 },
@@ -109,12 +109,12 @@ Calendar.mainPage = SC.Page.design({
       }),
 
       sampleTypeLabel: SC.LabelView.design({
-        layout: { left: 20, top: 142, height: 24, width: 120 },
+        layout: { left: 20, top: 170, height: 24, width: 120 },
         value: 'Sample Type',
       }),
 
       sampleTypeFields: SC.ScrollView.design({
-        layout: { left: 150, top: 142, height: 120, right: 10 },
+        layout: { left: 150, top: 170, height: 120, right: 10 },
         borderStyle: SC.BORDER_NONE,
 
         contentView: SC.RadioView.design({
@@ -129,34 +129,44 @@ Calendar.mainPage = SC.Page.design({
       }),
 
       infoMessage: SC.LabelView.design({
-        layout: { left: 20, right: 20, top: 280, height: 60 },
+        layout: { left: 20, right: 20, top: 300, height: 60 },
         iconBinding: 'Calendar.reservationController.infoIcon',
         valueBinding: 'Calendar.reservationController.infoMessage'
       }),
         
       warningMessage: SC.LabelView.design({
-        layout: { left: 20, right: 20, top: 350, bottom: 40 },
+        layout: { left: 20, right: 20, top: 370, bottom: 40 },
         iconBinding: 'Calendar.reservationController.warningIcon',
         valueBinding: 'Calendar.reservationController.warningMessage'
       }),
         
-      numberOfSamplesLabel: SC.LabelView.design({
+      descriptionLabel: SC.LabelView.design({
         layout: { left: 20, top: 86, height: 20, width: 120 },
+        value: 'Description'
+      }),
+
+      descriptionField: SC.TextFieldView.design({
+        layout: { left: 150, top: 86, width: 200, height: 20 },
+        valueBinding: 'Calendar.reservationController.description'
+      }),
+
+      numberOfSamplesLabel: SC.LabelView.design({
+        layout: { left: 20, top: 114, height: 20, width: 120 },
         value: 'Number of samples'
       }),
 
       numberOfSamplesField: SC.TextFieldView.design({
-        layout: { left: 150, top: 86, width: 100, height: 20 },
+        layout: { left: 150, top: 114, width: 100, height: 20 },
         valueBinding: 'Calendar.reservationController.sampleNumber'
       }),
 
       numberOfChipsLabel: SC.LabelView.design({
-        layout: { left: 20, top: 114, height: 20, width: 120 },
+        layout: { left: 20, top: 142, height: 20, width: 120 },
         value: 'Number of chips'
       }),
 
       numberOfChipsField: SC.TextFieldView.design({
-        layout: { left: 150, top: 114, width: 100, height: 20 },
+        layout: { left: 150, top: 142, width: 100, height: 20 },
         valueBinding: 'Calendar.reservationController.chipNumber'
       }),
 

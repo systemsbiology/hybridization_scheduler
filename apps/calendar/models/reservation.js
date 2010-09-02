@@ -20,6 +20,8 @@ Calendar.Reservation = SC.Record.extend(
 
   userLogin: SC.Record.attr(String, {key: 'user_login'}),
 
+  description: SC.Record.attr(String),
+
   sampleType: SC.Record.toOne('Calendar.SampleType', {key: 'sample_type_id'}),
 
   sampleNumber: SC.Record.attr(Number, {key: 'sample_number'}),
@@ -27,11 +29,12 @@ Calendar.Reservation = SC.Record.extend(
   chipNumber: SC.Record.attr(Number, {key: 'chip_number'}),
 
   displayName: function() {
-    var userLogin = this.get('userLogin') || "",
+    var description = this.get('description') || "",
         sampleNumber = this.get('sampleNumber') || "",
+        chipNumber = this.get('chipNumber') || "",
         sampleTypeName = this.get('sampleType') && this.get('sampleType').get('name') || "";
 
-    return userLogin + ": " + sampleNumber + " " + sampleTypeName;
+    return description + ": " + sampleNumber + " (" + chipNumber + ") " + sampleTypeName;
   }.property('userLogin', 'sampleNumber', 'sampleType').cacheable(),
 
   isWithinCapacity: function() {
