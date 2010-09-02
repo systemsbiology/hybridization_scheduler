@@ -27,3 +27,16 @@
   width: 16px;
   height: 16px;
 }
+
+div.reservation-view-title, div.reservation-view-details {
+  line-height: 17px;
+  padding-left: 2px;
+  background: #2952A3;
+  color: white;
+}
+
+div.reservation-view-details {
+  margin-bottom: 4px;
+  background: #668CD9;
+  border: 1px solid #2952A3;
+}

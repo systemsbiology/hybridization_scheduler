@@ -41,7 +41,7 @@ Calendar.DayView = SC.View.extend(SC.Border,
     borderStyle: SC.BORDER_NONE,
 
     contentView: SC.ListView.extend({
-      rowHeight: 40,
+      rowHeight: 56,
       contentBinding: '.parentView.parentView.parentView.content.reservations',
       target: 'parentView.parentView.parentView',
       action: 'editReservation',
