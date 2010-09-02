@@ -25,6 +25,7 @@ Calendar = SC.Application.create(
   	commitRecordsAutomatically: NO
   }).from('Calendar.DataSource'),
   
-  admin: NO
+  // is the current user an admin?
+  admin: null
 
 }) ;

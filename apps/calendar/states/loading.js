@@ -41,6 +41,8 @@ Calendar.LOADING = SC.Responder.create(
       if( !(result.get('status') & SC.Record.READY) ) ready = NO;
     });
 
+    if( SC.none(Calendar.get('admin')) ) ready = NO;
+
     if(ready) Calendar.makeFirstResponder(Calendar.READY);
   }
   
