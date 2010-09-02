@@ -1,4 +1,6 @@
 class AdminUsersController < InheritedResources::Base
+  before_filter :admin_required
+
   respond_to :html, :json
 
   def index

@@ -8,4 +8,9 @@ class AdminUser < ActiveRecord::Base
       :login => login
     }
   end
+
+  def self.include?(login)
+    AdminUser.where(:login => login).size > 0
+  end
+
 end

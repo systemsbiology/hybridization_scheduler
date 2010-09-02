@@ -1,4 +1,7 @@
 Server::Application.routes.draw do
+
+  match 'authorization.json', :to => 'authorization#role'
+
   resources :reservations
 
   resources :requirements

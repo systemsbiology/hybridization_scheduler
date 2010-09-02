@@ -1,4 +1,6 @@
 class ResourceStatesController < InheritedResources::Base
+  before_filter :admin_required, :except => :index
+
   respond_to :html, :json
 
   def index
