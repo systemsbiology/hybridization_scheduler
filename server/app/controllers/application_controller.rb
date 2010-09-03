@@ -7,5 +7,6 @@ class ApplicationController < ActionController::Base
   end
 
   # RubyCAS-client
+  require 'casclient/frameworks/rails/filter'
   before_filter CASClient::Frameworks::Rails::Filter
 end
