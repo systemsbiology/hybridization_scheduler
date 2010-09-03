@@ -24,6 +24,8 @@ Calendar.authorizationController = SC.ObjectController.create(
     if(SC.ok(response)) {
       if( response.get('body').role == "admin" ) Calendar.set('admin', YES);
       else Calendar.set('admin', NO);
+
+      Calendar.LOADING.loadingComplete();
     } 
   }
 }) ;
