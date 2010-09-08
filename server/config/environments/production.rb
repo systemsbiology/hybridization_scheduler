@@ -7,7 +7,11 @@ Server::Application.configure do
 
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
-  config.action_controller.perform_caching = true
+
+  # NOTE: having this true was causing problems with inherited_resources since 
+  # it uses HttpCacheResponder which doesn't appear to handle caching properly
+  # when resources are deleted
+  config.action_controller.perform_caching = false
 
   # Specifies the header that your server uses for sending files
   config.action_dispatch.x_sendfile_header = "X-Sendfile"
