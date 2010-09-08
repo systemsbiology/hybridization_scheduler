@@ -50,4 +50,7 @@ Server::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  # Need this to provide ISO 8601 format time zone to UI
+  config.time_zone = 'Pacific Time (US & Canada)'
 end
