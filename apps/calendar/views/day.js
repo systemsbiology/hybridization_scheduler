@@ -70,6 +70,8 @@ Calendar.DayView = SC.View.extend(SC.Border,
 
   editReservation: function() {
     var reservation = this.getPath('reservationScrollView.contentView.selection.firstObject');
+    if( SC.none(reservation) ) return;
+
     Calendar.reservationController.set('content', reservation);
     Calendar.reservationController.set( 'day', this.get('content') );
     Calendar.reservationController.set( 'savedAttributes', SC.copy(reservation.get('attributes')) );
