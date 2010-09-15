@@ -7,5 +7,5 @@ Server::Application.initialize!
 require 'casclient/frameworks/rails/filter'
 
 CASClient::Frameworks::Rails::Filter.configure(
-  :cas_base_url => "https://slim/rubycas"
+  :cas_base_url => App.rubycas_server
 )

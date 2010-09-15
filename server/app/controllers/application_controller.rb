@@ -3,10 +3,12 @@ class ApplicationController < ActionController::Base
 
   # Simple authorization
   def admin_required
-    AdminUser.include? session[:cas_user]
+    App.authentication_disabled || AdminUser.include?(session[:cas_user])
   end
 
   # RubyCAS-client
   require 'casclient/frameworks/rails/filter'
-  before_filter CASClient::Frameworks::Rails::Filter
+  unless App.authentication_disabled
+    before_filter CASClient::Frameworks::Rails::Filter
+  end
 end

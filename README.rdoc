@@ -33,7 +33,7 @@ Start the SproutCore development server:
 
   sc-server
 
-You should now be able to see the app at http://localhost:4020/calendar
+You should now be able to see the app at http://localhost:4020/calendar, and the administrative back end at http://localhost:3000
 
 === Deploying with Apache/Passenger
 
@@ -58,4 +58,8 @@ Add the following directive to your Apache2 configuration:
 
   RailsBaseURI /scheduler
 
-Restart Apache, and the app should be available at http://yourserver/scheduler
+Restart Apache, and the app should be available at http://yourserver/scheduler. The administrative backend can be reached at http://yourserver/scheduler/requirements.
+
+=== Enabling authentication
+
+The hybridization scheduler can use RubyCAS-server to authenticate users, which also allows for administrator users. Enable this by editing server/config/initializers/app_config.rb

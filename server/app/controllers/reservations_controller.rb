@@ -9,7 +9,8 @@ class ReservationsController < InheritedResources::Base
 
   def create
     # merge in the user identity from the session
-    @reservation = Reservation.new( params["reservation"].merge({:user_login => session[:cas_user]}) )
+    user_login = session[:cas_user] || "guest"
+    @reservation = Reservation.new( params["reservation"].merge({:user_login => user_login}) )
     create!
   end
 
@@ -17,7 +18,8 @@ class ReservationsController < InheritedResources::Base
     @reservation = Reservation.find(params[:id])
 
     # merge in the user identity from the session
-    @reservation.update_attributes( params["reservation"].merge({:user_login => session[:cas_user]}) )
+    user_login = session[:cas_user] || "guest"
+    @reservation.update_attributes( params["reservation"].merge({:user_login => user_login}) )
 
     super do |format|
       format.json { render :json => @reservation }
