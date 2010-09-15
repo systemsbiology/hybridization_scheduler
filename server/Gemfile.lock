@@ -1,6 +1,6 @@
 GIT
   remote: http://github.com/justinfrench/formtastic.git
-  revision: e42d256ebe7fdbd3881665d94ce54cf061a9186f
+  revision: e42d256
   branch: rails3
   specs:
     formtastic (1.1.0.beta)

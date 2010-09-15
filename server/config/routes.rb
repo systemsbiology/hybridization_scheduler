@@ -3,18 +3,25 @@ Server::Application.routes.draw do
   match 'authorization.json', :to => 'authorization#role'
 
   resources :reservations
-
   resources :requirements
-
   resources :resource_states
-
   resources :resources
-
   resources :admin_users
-
   resources :sample_types
 
   root :to => "ui#calendar"
+
+  # provide these routes again  under /scheduler so routes work in development
+  scope "/scheduler" do
+    match 'authorization.json', :to => 'authorization#role'
+
+    resources :reservations
+    resources :requirements
+    resources :resource_states
+    resources :resources
+    resources :admin_users
+    resources :sample_types
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
