@@ -23,10 +23,12 @@ Clone the git repository and install the git submodules:
   git submodule init
   git submodule update
 
-Start the rails server:
+Install the necessary gems, load seed data and start the rails server:
 
   cd server
-  rails server -d
+  rake gems:install
+  rake db:data:load
+  rails server
   cd ..
 
 Start the SproutCore development server:
