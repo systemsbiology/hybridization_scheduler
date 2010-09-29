@@ -51,18 +51,30 @@ Calendar.ResourceState = SC.Record.extend(
   }.property('name', 'resource').cacheable(),
 
   limitMessage: function() {
-    var fullName = this.get('fullName'),
+    var resourceName = this.getPath('resource.name'),
         sampleLimit = this.get('sampleLimit'),
         chipLimit = this.get('chipLimit'),
+        resourceNumber = this.getPath('resource.number'),
+        stateName = this.get('name'),
         ret;
 
-    ret = fullName + " is limited to";
+    ret = resourceName + " ";
+
+    if( stateName ) {
+      ret += "needs to be at " + stateName;
+    }
 
     if( sampleLimit ) {
-      ret += " " + sampleLimit + " samples"; 
+      if( stateName ) ret += " and ";
+
+      ret += "is limited to " + sampleLimit + " samples"; 
 
       if( chipLimit) ret += " and " + chipLimit + " chips";
-    } else if( chipLimit) ret += " " + chipLimit + " chips";
+    } else if( chipLimit) {
+      if( stateName ) ret += " and ";
+
+      ret += "is limited to " + chipLimit + " chips";
+    }
 
     ret += ". ";
 

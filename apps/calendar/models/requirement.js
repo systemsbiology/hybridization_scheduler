@@ -36,8 +36,9 @@ Calendar.Requirement = SC.Record.extend(
         chips = 0,
         resourceState = this.get('resourceState');
 
+    // count how many chips and samples there are for this sample type
     resourceState.get('requirements').forEach(function(requirement) {
-      sampleType = requirement.get('sampleType');
+      var sampleType = requirement.get('sampleType');
 
       reservations.forEach(function(reservation) {
         if(reservation.get('sampleType') === sampleType) {
@@ -47,12 +48,36 @@ Calendar.Requirement = SC.Record.extend(
       });
     });
 
+    var resource = resourceState.get('resource'),
+        resourceStates = [];
+
+    // count how many of the resource are needed
+    reservations.forEach(function(reservation) {
+      var sampleType, requirements, currentResource;
+
+      sampleType = reservation.get('sampleType');
+      if( SC.none(sampleType) ) return;
+
+      requirements = sampleType.get('requirements');
+
+      requirements.forEach(function(requirement) {
+        currentResource = requirement.getPath('resourceState.resource');
+
+        if( currentResource === resource) {
+          resourceStates.pushObject( requirement.get('resourceState') );
+        }
+      });
+    });
+    var resourceStateNumber = resourceStates.uniq().get('length');
+
     var sampleLimit = resourceState.get('sampleLimit');
     var chipLimit = resourceState.get('chipLimit');
+    var resourceNumber = resourceState.getPath('resource.number');
 
     if(allowFull) {
       if( (sampleLimit && samples > sampleLimit) ||
-          (chipLimit && chips > chipLimit) ) {
+          (chipLimit && chips > chipLimit) ||
+          (resourceStateNumber > resourceNumber) ) {
         return YES;
       } else return NO;
     } else {
