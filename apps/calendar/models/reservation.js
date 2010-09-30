@@ -15,7 +15,7 @@ Calendar.Reservation = SC.Record.extend(
 /** @scope Calendar.Reservation.prototype */ {
 
   primaryKey: 'id',
-  
+
   reservationDate: SC.Record.attr(SC.DateTime, {key: 'date'}),
 
   userLogin: SC.Record.attr(String, {key: 'user_login'}),
@@ -27,6 +27,8 @@ Calendar.Reservation = SC.Record.extend(
   sampleNumber: SC.Record.attr(Number, {key: 'sample_number'}),
 
   chipNumber: SC.Record.attr(Number, {key: 'chip_number'}),
+
+  blocking: SC.Record.attr(Boolean, {default: NO}),
 
   displayName: function() {
     var description = this.get('description') || "",

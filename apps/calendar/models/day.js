@@ -16,6 +16,8 @@ Calendar.Day = SC.Object.extend(
 
   reservations: [],
 
+  blocked: NO,
+
   canAddHybridizations: YES,
 
   init: function() {
@@ -39,7 +41,7 @@ Calendar.Day = SC.Object.extend(
 
     query = SC.Query.create({
       recordType: Calendar.Reservation,
-      conditions: "reservationDate > {dayStart} AND reservationDate < {dayEnd} AND (sampleNumber > 0 OR chipNumber > 0)",
+      conditions: "reservationDate > {dayStart} AND reservationDate < {dayEnd} AND (sampleNumber > 0 OR chipNumber > 0 OR blocking = YES)",
       parameters: {dayStart: dayStart, dayEnd: dayEnd},
     });
 
@@ -59,18 +61,29 @@ Calendar.Day = SC.Object.extend(
     
     var types = Calendar.store.find(Calendar.SampleType),
         canAddHybridizations = NO,
+        blocked = NO,
         day = this;
 
     types.forEach(function(type) {
       if( type.isAvailableForDay(day) ) canAddHybridizations = YES;
     });
 
+    var reservations = this.get('reservations');
+    reservations.forEach(function(reservation) {
+      if( reservation.get('blocking') ) {
+        canAddHybridizations = NO;
+        blocked = YES;
+      }
+    })
+
     this.set('canAddHybridizations', canAddHybridizations);
+    this.set('blocked', blocked)
   }.observes('reservations.length'),
 
   canAddMessage: function() {
-    if( this.get('canAddHybridizations') ) return ""
+    if( this.get('blocked') ) return "Hybridizations aren't available"
+    else if( this.get('canAddHybridizations') ) return ""
     else return "The maximum number of hybridizations have already been reserved."
-  }.property('canAddHybridizations').cacheable(),
+  }.property('canAddHybridizations','blocked').cacheable(),
 
 }) ;

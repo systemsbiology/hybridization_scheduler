@@ -86,7 +86,7 @@ Calendar.mainPage = SC.Page.design({
     layout: { centerX: 0, centerY: 0, width: 450, height: 500 },
 
     contentView: SC.View.design({
-      childViews: 'title dateField dateLabel sampleTypeLabel sampleTypeFields descriptionLabel descriptionField numberOfSamplesField numberOfSamplesLabel numberOfChipsField numberOfChipsLabel warningMessage infoMessage deleteButton cancelButton saveButton'.w(),
+      childViews: 'title dateField dateLabel sampleTypeLabel sampleTypeFields descriptionLabel descriptionField numberOfSamplesField numberOfSamplesLabel numberOfChipsField numberOfChipsLabel warningMessage infoMessage deleteButton blockButton cancelButton saveButton'.w(),
 
       title: SC.LabelView.design({
         layout: { centerX: 0, top: 10, width: 200, height: 32 },
@@ -176,6 +176,14 @@ Calendar.mainPage = SC.Page.design({
         target: 'Calendar.reservationController',
         action: 'destroy',
         isVisibleBinding: 'Calendar.reservationController.isEditing'
+      }),
+
+      blockButton: SC.ButtonView.design({
+        layout: { bottom: 10, left: 120, width: 100, height: 24 },
+        title: 'Block Day',
+        target: 'Calendar.reservationController',
+        action: 'block',
+        isVisibleBinding: 'Calendar.admin'
       }),
 
       cancelButton: SC.ButtonView.design({

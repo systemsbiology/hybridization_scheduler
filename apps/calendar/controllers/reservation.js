@@ -64,6 +64,13 @@ Calendar.reservationController = SC.ObjectController.create(
     }
   },
 
+  block: function() {
+    var reservation = this.get('content');
+    reservation.set('blocking', true);
+
+    Calendar.store.commitRecords();
+    Calendar.getPath('mainPage.reservation').remove();
+  },
   sampleTypeChoices: function() {
     var ret = [],
         day = this.get('day'),

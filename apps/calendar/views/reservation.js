@@ -21,7 +21,8 @@ Calendar.ReservationView = SC.View.extend(
     var description = '',
         sampleTypeName = '',
         sampleNumber = 0,
-        chipNumber = 0;
+        chipNumber = 0,
+        blocking = NO;
    
     var content = this.get('content');
     if(content != null) {
@@ -29,13 +30,21 @@ Calendar.ReservationView = SC.View.extend(
       sampleTypeName = content.get('sampleType') && content.getPath('sampleType.name');
       sampleNumber = content.get('sampleNumber');
       chipNumber = content.get('chipNumber');
+      blocking = content.get('blocking');
     }
 
-    context = context.begin('div').addClass('reservation-view-title').push(description).end();
-    context = context.begin('div').addClass('reservation-view-details');
-    context = context.push(sampleTypeName).push("<br>");
-    context = context.push(sampleNumber).push(" samples, ").push(chipNumber).push(" chips");
-    context = context.end();
+    if(blocking) {
+      context = context.begin('div').addClass('reservation-view-title').push("Date Unavailable").end();
+      context = context.begin('div').addClass('reservation-view-details');
+      context = context.push(description);
+      context = context.end();
+    } else {
+      context = context.begin('div').addClass('reservation-view-title').push(description).end();
+      context = context.begin('div').addClass('reservation-view-details');
+      context = context.push(sampleTypeName).push("<br>");
+      context = context.push(sampleNumber).push(" samples, ").push(chipNumber).push(" chips");
+      context = context.end();
+    }
 
     sc_super();
   }
