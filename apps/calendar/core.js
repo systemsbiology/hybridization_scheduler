@@ -27,5 +27,4 @@ Calendar = SC.Application.create(
   
   // is the current user an admin?
   admin: null
-
 }) ;

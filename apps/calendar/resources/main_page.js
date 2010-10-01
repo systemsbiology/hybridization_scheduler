@@ -37,31 +37,36 @@ Calendar.mainPage = SC.Page.design({
     toolbar: SC.ToolbarView.design({
       layout: { width: 802, height: 40, centerX: 0, centerY: -250 },
       
-      childViews: 'leftButton appTitle rightButton'.w(),
+      childViews: 'leftButton appTitle refreshButton rightButton'.w(),
 
-        leftButton: SC.ButtonView.design({
+      leftButton: SC.ButtonView.design({
         layout: { left: 10, centerY: 0, width: 44, height: 24 },
         titleMinWidth: 36,
         icon: 'arrow_left',
-      
-      target: 'Calendar.daysController',
-      action: 'backward'	
+        target: 'Calendar.daysController',
+        action: 'backward'	
       }),	
       
       appTitle: SC.LabelView.design({
         layout: { width: 400, height: 24, centerX: 0, centerY: 0 },
-      controlSize: SC.LARGE_CONTROL_SIZE,
-      textAlign: SC.ALIGN_CENTER,
+        controlSize: SC.LARGE_CONTROL_SIZE,
+        textAlign: SC.ALIGN_CENTER,
         value: 'Hybridization Calendar'
       }),
       
+      refreshButton: SC.ButtonView.design({
+        layout: { left: 520, width: 100, centerY: 0, height: 24 },
+        title: 'Refresh',
+        target: 'Calendar.initialDataController',
+        action: 'refreshReservations'
+      }),
+
       rightButton: SC.ButtonView.design({
         layout: { right: 10, centerY: 0, width: 44, height: 24 },
         titleMinWidth: 36,
         icon: 'arrow_right',
-      
-      target: 'Calendar.daysController',
-      action: 'forward'	
+        target: 'Calendar.daysController',
+        action: 'forward'	
       }),	
     }),
     

@@ -32,6 +32,18 @@ Calendar.initialDataController = SC.ObjectController.create(
     });
 
     this.set('results', results);
-  }
+  },
 
+  refreshReservations: function() {
+    var query, reservations, ids;
+   
+    query = Calendar.RESERVATIONS_QUERY;
+    reservations = Calendar.store.find(query);
+    ids = reservations.invoke('id');
+
+    // this seems to be necessary to remove deleted records
+    Calendar.store.unloadRecords(Calendar.Reservation, ids);
+
+    Calendar.store.refreshQuery(query);
+  }
 }) ;

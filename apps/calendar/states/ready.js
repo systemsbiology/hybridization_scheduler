@@ -21,6 +21,14 @@ Calendar.READY = SC.Responder.create(
   
   didBecomeFirstResponder: function() {
     Calendar.set('currentScene', 'ready');
+
+    // refresh the reservations every minute
+    SC.Timer.schedule({
+      target: Calendar.initialDataController,
+      action: 'refreshReservations',
+      interval: 60000,
+      repeats: YES
+    });
   },
   
   willLoseFirstResponder: function() {
