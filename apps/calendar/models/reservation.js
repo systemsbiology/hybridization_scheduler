@@ -28,7 +28,7 @@ Calendar.Reservation = SC.Record.extend(
 
   chipNumber: SC.Record.attr(Number, {key: 'chip_number'}),
 
-  blocking: SC.Record.attr(Boolean, {default: NO}),
+  blocking: SC.Record.attr(Boolean, {defaultValue: NO}),
 
   displayName: function() {
     var description = this.get('description') || "",
