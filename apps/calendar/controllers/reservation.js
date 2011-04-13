@@ -40,11 +40,9 @@ Calendar.reservationController = SC.ObjectController.create(
       var attributes = this.get('savedAttributes');
 
       reservation.beginEditing();
-      for (var key in attributes) {
-        if (attributes.hasOwnPropery(key)) {
-          reservation.writeAttribute(key, attributes[key]);
-        }
-      }
+      attributes.forEach( function(key) {
+        reservation.writeAttribute(key, attributes[key]);
+      });
       reservation.endEditing();
     }
 
