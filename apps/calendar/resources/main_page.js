@@ -110,12 +110,12 @@ Calendar.mainPage = SC.Page.design({
       dateField: SCUI.DatePickerView.design({
         layout: { left: 150, top: 50, height: 24, width: 120 },
         dateFormat: '%m/%d/%Y',
-        dateBinding: 'Calendar.reservationController.reservationDate',
+        dateBinding: 'Calendar.reservationController.reservationDate'
       }),
 
       sampleTypeLabel: SC.LabelView.design({
         layout: { left: 20, top: 170, height: 24, width: 120 },
-        value: 'Sample Type',
+        value: 'Sample Type'
       }),
 
       sampleTypeFields: SC.ScrollView.design({
@@ -129,7 +129,7 @@ Calendar.mainPage = SC.Page.design({
           itemTitleKey: 'name',
           itemValueKey: 'type',
           itemIsEnabledKey: 'enabled',
-          valueBinding: 'Calendar.reservationController.sampleType',
+          valueBinding: 'Calendar.reservationController.sampleType'
         })
       }),
 
@@ -195,7 +195,7 @@ Calendar.mainPage = SC.Page.design({
         layout: { bottom: 10, right: 120, width: 100, height: 24 },
         title: 'Cancel',
         target: 'Calendar.reservationController',
-        action: 'cancel',
+        action: 'cancel'
       }),
 
       saveButton: SC.ButtonView.design({

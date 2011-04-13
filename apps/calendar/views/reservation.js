@@ -25,7 +25,7 @@ Calendar.ReservationView = SC.View.extend(
         blocking = NO;
    
     var content = this.get('content');
-    if(content != null) {
+    if(content !== null) {
       description = content.get('description');
       sampleTypeName = content.get('sampleType') && content.getPath('sampleType.name');
       sampleNumber = content.get('sampleNumber');

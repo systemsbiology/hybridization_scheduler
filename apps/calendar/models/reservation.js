@@ -93,7 +93,7 @@ Calendar.Reservation = SC.Record.extend(
         description = this.get('description');
 
     if( description && description.length > 0 && sampleType && this._isNumber(sampleNumber) &&
-        this._isNumber(chipNumber) ) return YES
+      this._isNumber(chipNumber) ) return YES;
     else return NO
   }.property('sampleType', 'sampleNumber', 'chipNumber').cacheable(),
 

@@ -55,7 +55,7 @@ Calendar.DataSource = SC.DataSource.extend(
   },
 
   didFetchQuery: function(response, store, query) {
-  	if(SC.ok(response)) {
+    if(SC.ok(response)) {
       store.loadRecords(query.recordType, response.get('body'));
       store.dataSourceDidFetchQuery(query);
     } else store.dataSourceDidErrorQuery(query, response);	

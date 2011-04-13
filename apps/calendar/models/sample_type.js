@@ -24,7 +24,7 @@ Calendar.SampleType = SC.Record.extend(
     query = SC.Query.create({
       recordType: Calendar.Requirement,
       conditions: "sampleType = {sampleType}",
-      parameters: {sampleType: this},
+      parameters: {sampleType: this}
     });
 
     ret = Calendar.store.find(query);

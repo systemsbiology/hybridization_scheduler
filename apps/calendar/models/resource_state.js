@@ -30,7 +30,7 @@ Calendar.ResourceState = SC.Record.extend(
     query = SC.Query.create({
       recordType: Calendar.Requirement,
       conditions: "resourceState = {resourceState}",
-      parameters: {resourceState: this},
+      parameters: {resourceState: this}
     });
 
     ret = Calendar.store.find(query);
@@ -79,7 +79,7 @@ Calendar.ResourceState = SC.Record.extend(
     ret += ". ";
 
     return ret;
-  }.property('sampleLimit', 'chipLimit', 'fullName').cacheable(),
+  }.property('sampleLimit', 'chipLimit', 'fullName').cacheable()
 }) ;
 
 Calendar.RESOURCE_STATES_QUERY = SC.Query.create({recordType: Calendar.ResourceState});

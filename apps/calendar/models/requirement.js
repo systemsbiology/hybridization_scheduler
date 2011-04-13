@@ -93,7 +93,7 @@ Calendar.Requirement = SC.Record.extend(
         state = this.get('resourceState');
     
     return state.get('limitMessage');
-  }.property().cacheable(),
+  }.property().cacheable()
 }) ;
 
 Calendar.REQUIREMENTS_QUERY = SC.Query.create({recordType: Calendar.Requirement});

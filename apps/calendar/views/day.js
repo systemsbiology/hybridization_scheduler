@@ -18,7 +18,7 @@ Calendar.DayView = SC.View.extend(SC.Border,
   contentDisplayProperties: 'date'.w(),
   
   render: function(context, firstTime) {
-  	var date = '';
+    var date = '';
 	
     var content = this.get('content');
     if(content) {
@@ -45,7 +45,7 @@ Calendar.DayView = SC.View.extend(SC.Border,
       contentBinding: '.parentView.parentView.parentView.content.reservations',
       target: 'parentView.parentView.parentView',
       action: 'editReservation',
-      exampleView: Calendar.ReservationView,
+      exampleView: Calendar.ReservationView
     })
   }),
 
@@ -64,7 +64,7 @@ Calendar.DayView = SC.View.extend(SC.Border,
     reservation.set('reservationDate', this.getPath('content.date'));
     Calendar.reservationController.set( 'day', this.get('content') );
     Calendar.reservationController.set('content', reservation);
-    pane = Calendar.getPath('mainPage.reservation')
+    pane = Calendar.getPath('mainPage.reservation');
     pane.append().awake() ;
   },
 
@@ -75,7 +75,7 @@ Calendar.DayView = SC.View.extend(SC.Border,
     Calendar.reservationController.set('content', reservation);
     Calendar.reservationController.set( 'day', this.get('content') );
     Calendar.reservationController.set( 'savedAttributes', SC.copy(reservation.get('attributes')) );
-    pane = Calendar.getPath('mainPage.reservation')
+    pane = Calendar.getPath('mainPage.reservation');
     pane.append().awake() ;
   }
 });

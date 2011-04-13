@@ -20,13 +20,13 @@ Calendar.reservationController = SC.ObjectController.create(
   isEditing: function() {
     var reservation = this.get('content');
 
-    if(reservation && reservation.get('status') === SC.Record.READY_NEW) return NO
-    else return YES
+    if(reservation && reservation.get('status') === SC.Record.READY_NEW) return NO;
+    else return YES;
   }.property().cacheable(),
 
   dialogTitle: function() {
-    if( this.get('isEditing') ) return "Edit Hybridization"
-    else return "Add Hybridization"
+    if( this.get('isEditing') ) return "Edit Hybridization";
+    else return "Add Hybridization";
   }.property().cacheable(),
 
   cancel: function() {
@@ -40,8 +40,10 @@ Calendar.reservationController = SC.ObjectController.create(
       var attributes = this.get('savedAttributes');
 
       reservation.beginEditing();
-      for(var key in attributes) {
-        reservation.writeAttribute(key, attributes[key]);
+      for (var key in attributes) {
+        if (attributes.hasOwnPropery(key)) {
+          reservation.writeAttribute(key, attributes[key]);
+        }
       }
       reservation.endEditing();
     }
@@ -97,6 +99,6 @@ Calendar.reservationController = SC.ObjectController.create(
     var choices = this.get('sampleTypeChoices').get('length');
 
     return { height: choices*20 };
-  }.property().cacheable(),
+  }.property().cacheable()
 
 }) ;

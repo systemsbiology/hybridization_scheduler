@@ -18,7 +18,7 @@ Calendar.daysController = SC.ArrayController.create(
   baseDate: SC.DateTime.create(),
 
   content: function() {
-  	var ret = [],
+    var ret = [],
         baseDate = this.get('baseDate'),
         startDate;
 	
@@ -29,7 +29,7 @@ Calendar.daysController = SC.ArrayController.create(
         date: startDate.advance({day:i})
       }));
     }
-    startDate = startDate.advance({day:7})
+    startDate = startDate.advance({day:7});
     for(i=1;i<5;i++) {
       ret.pushObject(Calendar.Day.create({
         date: startDate.advance({day:i})
@@ -40,12 +40,12 @@ Calendar.daysController = SC.ArrayController.create(
   }.property('baseDate').cacheable(),
 
   forward: function() {
-  	var baseDate = this.get('baseDate');
-	this.set('baseDate', baseDate.advance({day:7}));
+    var baseDate = this.get('baseDate');
+    this.set('baseDate', baseDate.advance({day:7}));
   },
   
   backward: function() {
-  	var baseDate = this.get('baseDate');
-	this.set('baseDate', baseDate.advance({day:-7}));
-  },
+    var baseDate = this.get('baseDate');
+    this.set('baseDate', baseDate.advance({day:-7}));
+  }
 }) ;
