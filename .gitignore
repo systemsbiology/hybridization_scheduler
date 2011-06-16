@@ -1,3 +1,8 @@
-tmp
-server/public/static
-server/public/ui
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/**/*
+app/sproutcore/tmp
+public/static
+public/ui
+config/database.yml

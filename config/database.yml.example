@@ -1,0 +1,20 @@
+development:
+  adapter: mysql
+  host: localhost
+  database: hybridization_scheduler_development
+  username: root
+  password:
+
+test:
+  adapter: mysql
+  host: localhost
+  database: hybridization_scheduler_test
+  username: root
+  password:
+
+production:
+  adapter: mysql
+  host: localhost
+  database: hybridization_scheduler_production
+  username: root
+  password:
