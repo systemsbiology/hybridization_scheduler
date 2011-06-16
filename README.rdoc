@@ -11,27 +11,22 @@ See it in action: http://hybscheduler.heroku.com
 Make sure you have the following prerequisites:
 - Git
 - Ruby 1.8.7
-- RubyGems 1.3.6+
-- Rails 3.0.1 (gem install rails -v=3.0.1)
-- SproutCore 1.4.1 (gem install sproutcore -v=1.4.1)
+- Bundler ~> 1.0
 - Java (for the build tools)
 
 Clone the git repository and install the git submodules:
 
   git clone git://github.com/bmarzolf/hybridization_scheduler.git
   cd hybridization_scheduler
-  git submodule init
-  git submodule update
 
 Install the necessary gems, load seed data and start the rails server:
 
-  cd server
   bundle install
   rake db:migrate
   rake db:data:load
   rails server
 
-In another terminal, start the SproutCore development server in your hybridization_scheduler folder:
+In another terminal, start the SproutCore development server in your array_pipelines/app/sproutcore folder:
 
   sc-server
 
@@ -45,8 +40,6 @@ Install the application on your server:
 
   git clone git://github.com/bmarzolf/hybridization_scheduler.git
   cd hybridization_scheduler
-  git submodule init
-  git submodule update
 
 Build the user interface:
 
