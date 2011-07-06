@@ -16,7 +16,7 @@ Make sure you have the following prerequisites:
 
 Clone the git repository and install the git submodules:
 
-  git clone git://github.com/bmarzolf/hybridization_scheduler.git
+  git clone git://github.com/systemsbiology/hybridization_scheduler.git
   cd hybridization_scheduler
 
 Install the necessary gems, load seed data and start the rails server:
@@ -38,7 +38,7 @@ This assumes the prerequisites for development plus having the Apache2 and the l
 
 Install the application on your server:
 
-  git clone git://github.com/bmarzolf/hybridization_scheduler.git
+  git clone git://github.com/systemsbiology/hybridization_scheduler.git
   cd hybridization_scheduler
 
 Build the user interface:
