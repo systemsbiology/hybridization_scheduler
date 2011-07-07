@@ -22,7 +22,7 @@ Calendar.ResourceState = SC.Record.extend(
 
   chipLimit: SC.Record.attr(Number, {key: 'chip_limit'}),
   
-  resource: SC.Record.toOne('Calendar.Resource', {key: 'resource_id'}),
+  resource: SC.Record.toOne('Calendar.Resource', {key: 'hybridization_resource_id'}),
 
   requirements: function() {
     var query, ret;

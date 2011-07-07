@@ -1,13 +1,13 @@
 class ResourceState < ActiveRecord::Base
-  belongs_to :resource
+  belongs_to :hybridization_resource
 
   has_many :requirements
 
   def resource_and_state_name
     if name && name.length > 0
-      "#{resource.name} (#{name})"
+      "#{hybridization_resource.name} (#{name})"
     else
-      resource.name
+      hybridization_resource.name
     end
   end
 
@@ -17,7 +17,7 @@ class ResourceState < ActiveRecord::Base
       :name => name,
       :sample_limit => sample_limit,
       :chip_limit => chip_limit,
-      :resource_id => resource_id
+      :resource_id => hybridization_resource_id
     }
   end
 end

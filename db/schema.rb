@@ -10,10 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110427182455) do
+ActiveRecord::Schema.define(:version => 20110707192339) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "login"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "hybridization_resources", :force => true do |t|
+    t.string   "name"
+    t.integer  "number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -41,14 +48,7 @@ ActiveRecord::Schema.define(:version => 20110427182455) do
     t.string   "name"
     t.integer  "sample_limit"
     t.integer  "chip_limit"
-    t.integer  "resource_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "resources", :force => true do |t|
-    t.string   "name"
-    t.integer  "number"
+    t.integer  "hybridization_resource_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

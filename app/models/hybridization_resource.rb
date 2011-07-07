@@ -1,4 +1,4 @@
-class Resource < ActiveRecord::Base
+class HybridizationResource < ActiveRecord::Base
   has_many :resource_states
 
   validates_presence_of :name, :number

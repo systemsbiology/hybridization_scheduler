@@ -38,7 +38,7 @@ Calendar.DataSource = SC.DataSource.extend(
 
       return YES;
     } else if (query === Calendar.RESOURCES_QUERY) {
-      SC.Request.getUrl('/scheduler/resources.json').header({
+      SC.Request.getUrl('/scheduler/hybridization_resources.json').header({
         'Accept': 'application/json'
       }).json().notify(this, 'didFetchQuery', store, query).send();
 

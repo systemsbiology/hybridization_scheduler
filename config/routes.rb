@@ -5,7 +5,7 @@ Server::Application.routes.draw do
   resources :reservations
   resources :requirements
   resources :resource_states
-  resources :resources
+  resources :hybridization_resources
   resources :admin_users
   resources :sample_types
 
@@ -18,7 +18,7 @@ Server::Application.routes.draw do
     resources :reservations
     resources :requirements
     resources :resource_states
-    resources :resources
+    resources :hybridization_resources
     resources :admin_users
     resources :sample_types
   end
